@@ -15,7 +15,7 @@ class Ticker extends Component {
        this.setState({
          ticker: this.state.ticker + 1,
        });
-     }, 1000);
+     }, 400);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -34,7 +34,7 @@ class Ticker extends Component {
       this.setState({
         ticker: this.state.ticker + 1,
       });
-    }, 1000);
+    }, 400);
   }
 
   clear = () => {
