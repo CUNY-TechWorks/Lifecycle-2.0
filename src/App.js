@@ -27,20 +27,28 @@ class Ticker extends Component {
 
   pause = () => {
     clearInterval(this.id);
+
+    document.getElementsByTagName("td")[0].innerText = "Ticker is paused"
   }
 
   resume = () => {
-    this.id = setInterval(() => {
-      this.setState({
-        ticker: this.state.ticker + 1,
-      });
-    }, 400);
+    if(document.getElementsByTagName("td")[0].innerText === "Ticker is paused" || this.state.ticker === 0) {
+      this.id = setInterval(() => {
+        this.setState({
+          ticker: this.state.ticker + 1,
+        });
+       }, 400);
+
+       document.getElementsByTagName("td")[0].innerText = "Ticker is resuming"
+   }
   }
 
   clear = () => {
      this.setState({
        ticker: 0,
      });
+     
+     document.getElementsByTagName("td")[0].innerText = "Ticker has resetted"
   }
 
   render() {
@@ -48,10 +56,12 @@ class Ticker extends Component {
     
     return (
       <div>
-         <p> The ticker is: {ticker} </p>
-         <button type="button" onClick={this.clear}> Reset Ticker </button>
-         <button type="button" onClick={this.pause}> Pause Ticker </button>
-         <button type="button" onClick={this.resume}> Resume Ticker </button>
+         <p className="body"> The ticker is: {ticker}  <td> Ticker started </td> </p>
+         <div className="button-body">
+           <button type="button" className="button" onClick={this.clear}> Reset Ticker </button>
+           <button type="button" className="button" onClick={this.pause}> Pause Ticker </button>
+           <button type="button" className="button" onClick={this.resume}> Resume Ticker </button>
+         </div>
       </div>
     ); 
   }

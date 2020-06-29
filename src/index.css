@@ -1,0 +1,22 @@
+* {
+  background-color: black;
+}
+
+.body {
+   margin-bottom: 50px;
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+   font-size: 30px;
+   color: yellow;
+}
+
+.button-body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.button {
+    color: yellow;
+}
