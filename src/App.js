@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Ticker extends Component {
   constructor() {
     super();
-    
+
     this.state = {
        ticker: 0,
     }
@@ -11,7 +11,7 @@ class Ticker extends Component {
 
   componentDidMount() {
      // start our ticker here
-     setInterval(() => {
+      this.id = setInterval(() => {
        this.setState({
          ticker: this.state.ticker + 1,
        });
@@ -23,6 +23,18 @@ class Ticker extends Component {
      // This doesn't prevent rendering, but rather just optimizing
      // performance
      return nextState.ticker % 3 === 0;
+  }
+
+  pause = () => {
+    clearInterval(this.id);
+  }
+
+  resume = () => {
+    this.id = setInterval(() => {
+      this.setState({
+        ticker: this.state.ticker + 1,
+      });
+    }, 1000);
   }
 
   clear = () => {
@@ -38,6 +50,8 @@ class Ticker extends Component {
       <div>
          <p> The ticker is: {ticker} </p>
          <button type="button" onClick={this.clear}> Reset Ticker </button>
+         <button type="button" onClick={this.pause}> Pause Ticker </button>
+         <button type="button" onClick={this.resume}> Resume Ticker </button>
       </div>
     ); 
   }
